@@ -1,11 +1,13 @@
 package com.example.selenidecucumber.steps;
 
+import com.codeborne.selenide.*;
 import com.example.selenidecucumber.pages.MainPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class SearchSteps {
@@ -25,12 +27,23 @@ public class SearchSteps {
         mainPage.searchButton.click();
         mainPage.searchedText = arg0;
         $("[data-test='search-input']").sendKeys(arg0);
-        $("button[data-test='full-search-button']").click();
     }
 
     @Then("the result should contain the searched text")
     public void theResultShouldContainTheSearchedText() {
-        $$("ul[data-test='search-results'] [data-test='result-preview']").forEach(element -> element.shouldHave(text(mainPage.searchedText)));
+        $$("ul[data-test='search-results'] [data-test='result-content']")
+                .should(CollectionCondition.allMatch("with text: "+ mainPage.searchedText, e -> e.getText().contains(mainPage.searchedText)));
+    }
 
+    @And("the first result is selected")
+    public void theFirstResultIsSelected() {
+        SelenideElement firstElement = $$("ul[data-test='search-results'] a").first();
+        mainPage.clickedSearchResultUrl = firstElement.getAttribute("href");
+        firstElement.click();
+    }
+
+    @Then("a navigation is happend")
+    public void aNavigationIsHappend() {
+        Assert.assertEquals(mainPage.clickedSearchResultUrl, WebDriverRunner.getWebDriver().getCurrentUrl());
     }
 }

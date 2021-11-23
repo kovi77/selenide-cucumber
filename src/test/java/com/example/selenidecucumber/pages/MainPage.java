@@ -19,6 +19,7 @@ public class MainPage {
     public List<SelenideElement> subMenus = $$(".main-menu-item--active a.main-submenu-item__link");
     public String searchedText;
     public String selectedSubMenu;
+    public String clickedSearchResultUrl;
 
     public void selectMenu(String option){
         menus.stream().filter(e -> e.getText().equals(option)).findFirst().ifPresent(SelenideElement::click);
