@@ -5,6 +5,7 @@ Feature: Navigate on jetbrains website
     When the "<ide>" is selected from the Developer tools menu
     Then the start page of the IDE should be loaded
     Examples:
-      | ide   |
-      |AppCode|
-      |CLion  |
+      | ide           |
+      |IntelliJ IDEA  |
+      |AppCode        |
+      |CLion          |
