@@ -9,4 +9,4 @@ Feature: Search on jetbrains website
     Given the jetbrains website is loaded
     When the "Selenium" text is searched
     And the first result is selected
-    Then a navigation is happend
+    Then a navigation happens

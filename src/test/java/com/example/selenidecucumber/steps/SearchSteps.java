@@ -42,8 +42,8 @@ public class SearchSteps {
         firstElement.click();
     }
 
-    @Then("a navigation is happend")
-    public void aNavigationIsHappend() {
+    @Then("a navigation happens")
+    public void aNavigationHappens() {
         Assert.assertEquals(mainPage.clickedSearchResultUrl, WebDriverRunner.getWebDriver().getCurrentUrl());
     }
 }
