@@ -26,18 +26,17 @@ public class SearchSteps {
     public void theTextIsSearched(String arg0) {
         mainPage.searchButton.click();
         mainPage.searchedText = arg0;
-        $("[data-test='search-input']").sendKeys(arg0);
+        mainPage.searchInput.sendKeys(arg0);
     }
 
     @Then("the result should contain the searched text")
     public void theResultShouldContainTheSearchedText() {
-        $$("ul[data-test='search-results'] [data-test='result-content']")
-                .should(CollectionCondition.allMatch("with text: "+ mainPage.searchedText, e -> e.getText().contains(mainPage.searchedText)));
+        mainPage.searchResultListContent.should(CollectionCondition.allMatch("with text: "+ mainPage.searchedText, e -> e.getText().contains(mainPage.searchedText)));
     }
 
     @And("the first result is selected")
     public void theFirstResultIsSelected() {
-        SelenideElement firstElement = $$("ul[data-test='search-results'] a").first();
+        SelenideElement firstElement = mainPage.searchResultList.first();
         mainPage.clickedSearchResultUrl = firstElement.getAttribute("href");
         firstElement.click();
     }
