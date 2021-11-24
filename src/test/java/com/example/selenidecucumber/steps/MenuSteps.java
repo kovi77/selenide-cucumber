@@ -22,9 +22,9 @@ public class MenuSteps {
         ideDefaultPage.title.shouldHave(ownText(mainPage.selectedSubMenu));
     }
 
-    @When("the {string} is selected from the Developer tools menu")
-    public void theIsSelectedFromTheDeveloperToolsMenu(String arg0) {
-        mainPage.selectMenu("Developer Tools");
+    @When("the {string} is selected from the {string} menu")
+    public void theIsSelectedFromTheMenu(String arg0, String arg1) {
+        mainPage.selectMenu(arg1);
         mainPage.selectSubMenu(arg0);
     }
 }
