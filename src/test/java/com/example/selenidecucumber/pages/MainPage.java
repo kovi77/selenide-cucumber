@@ -12,11 +12,11 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
     public SelenideElement searchButton = $("[data-test='site-header-search-action']");
-    public SelenideElement activeMenu = $(".main-menu-item--active [data-test='main-submenu']");
+    public SelenideElement activeMenu = $("[data-test='main-submenu']");
     public SelenideElement searchInput = $("[data-test='search-input']");
     public SelenideElement searchResults = $("ul[data-test='search-results']");
     public List<SelenideElement> menus = $$("[data-test='main-menu-item-action']");
-    public List<SelenideElement> subMenus = $$(".main-menu-item--active a.main-submenu-item__link");
+    public List<SelenideElement> subMenus = $$("[data-test='main-submenu-item-link']");
     public ElementsCollection searchResultList = searchResults.$$("a");
     public ElementsCollection searchResultListContent = searchResults.$$("[data-test='result-content']");
     public String searchedText;
